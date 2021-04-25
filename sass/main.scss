@@ -22,7 +22,7 @@ $bold: 700;
 $black: 900;
 
 //Media queries
-$breakpoint:('phone':'40rem', 'tablet': '76.8rem', 'laptop': '114rem');
+$breakpoint:('phone':'40rem', 'tablet': '76.8rem', 'laptop': '90rem');
 
 @mixin responsive($size){
     @media (min-width: map-get($breakpoint, $size )){
@@ -265,12 +265,14 @@ p{
 
     //the images goes here 
     &__img{
-        
+        margin: auto;
         margin-bottom: 4.8rem;
         overflow: hidden;
-        width: 100%;
+        max-width: 82rem;
+        
+
         &--mobile{
-            width: 106%;
+           width: 100%;
             height: auto;
             display: block;
             
