@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap');
+
+:root{
+    --color-primary: hsl(192, 37%, 48%);
+    --color-primary-light: hsl(192, 90%, 77%);
+
+    --color-secondary: hsl(268, 34%, 53%);
+    --color-seconday-light: hsl(268, 100%, 86%);
+
+    --color-grey-dark: hsl(240, 21%, 20%);
+    --color-grey-light: hsl(240, 10%, 57%);
+
+
+    --color-white: hsl(0, 0%, 98%);
+
+}
+
+//Font weight
+$regular: 400;
+$medium: 500;
+$bold: 700;
+$black: 900;
+
+//Media queries
+$breakpoint:('phone':'40rem', 'tablet': '76.8rem', 'laptop': '114rem');
+
+@mixin responsive($size){
+    @media (min-width: map-get($breakpoint, $size )){
+        @content;
+    }
+}
+
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 1.6rem;
+    color: var(--color-grey-dark);
+    background: var(--color-white);
+    text-align: center;
+
+   
+   
+}
+
+/*
+
+############## UTILITIES  ################
+
+*/
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    line-height: 1.1;
+}
+
+p{
+    color: var(--color-grey-light);
+
+    @include responsive(tablet){
+        line-height: 1.7;
+    }
+
+    @include responsive(laptop){
+        font-size: 1.8rem;
+    }
+
+
+}
+
+.row{
+    width: 90%;
+    margin: 0 auto;
+
+    @include responsive(tablet){
+        max-width: 114rem;
+        
+    }
+
+}
+
+.flex{
+    display: flex;
+}
+
+/*BUTTONS*/
+.btn{
+    font-weight:$black ;
+    color:var( --color-white);
+    border: 0;
+    border-radius:2.9rem ;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: all .4s ;
+   
+    span{
+        margin-left: 4px;
+        color: var(--color-primary-light)
+    }
+
+    @include responsive(laptop){
+        &:hover,
+        &:active{
+            background: lighten(hsl(192, 37%, 48%), 10%);
+
+        }
+       }
+
+    
+
+    &--link,
+    &--purple{
+        background-color: var(--color-secondary);
+       @include responsive(laptop){
+        &:hover,
+        &:active{
+            background: lighten(hsl(268, 34%, 53%), 10%);
+
+        }
+       }
+    }
+
+    &--purple{
+        span{
+            color: var(--color-seconday-light);
+        }
+
+       /*Align the item on top when the viewpoort is greateer than 114rem*/
+       @include responsive(laptop){
+           align-self: flex-start;
+       }
+    }
+
+    &--link{
+        padding: 1.6rem 2.8rem;
+    }
+    &--action{
+        
+        padding: 1.6rem 4rem;
+        &:focus{
+            outline: none;
+            
+        }
+    }
+}
+
+
+/*SECONDARY TITLE*/
+
+.h2--title{
+    font-size: 3.2rem;
+    line-height: 1.2;
+    font-weight: $black;
+
+    @include responsive(tablet){
+        font-size: 4rem;
+        line-height: 1.1;
+    }
+}
+
+
+
+/*indicator*/
+.indicator{
+    height: 5.6rem;
+   
+    width: 5.6rem;
+    border-radius: 50%;
+    border: 2px solid hsla(240, 10%, 57%, .25);
+    color: var(--color-grey-light);
+    background: var(--color-white);
+    padding: 1.6rem;
+    font-weight: $black;
+    position: absolute;
+    left: 50%;
+
+    transform: translateX(-50%);
+    
+    &::before{
+        content: '';
+        display: block;
+        background:  hsla(240, 10%, 57%, .25);
+        width: 1px;
+        height: 8.4rem;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+  //  &--top{}
+
+    &--btm{
+        top: -6%;
+    }
+
+}
+
+/*
+
+############## HERO IMAGE SELECTION ################
+
+*/
+
+.img__abs{
+    position: relative;
+    
+    &--laptop{
+        display: none;
+        @include responsive(laptop){
+            display: block;
+            position: absolute;
+            top: 2%;
+        }
+    }
+    &--left{
+        left: -15%;
+
+    }
+
+    &--right{
+      right: -15%;
+    }
+}
+
+
+/*
+
+
+############## LAYOUT ################
+
+*/
+
+.header{
+    text-align: center;
+    padding-bottom: 6.4rem;
+
+    &__logo{
+        
+        padding: 4.8rem 0;
+
+        @include responsive(laptop){
+          padding: 8rem 0 6rem;
+            
+        }
+        
+    }
+
+    //the images goes here 
+    &__img{
+        
+        margin-bottom: 4.8rem;
+        overflow: hidden;
+        &--mobile{
+            width: 106%;
+            height: auto;
+            display: block;
+            
+        }
+
+        /*Tablet*/
+        @include responsive(tablet){
+            margin-bottom: 7.2rem;
+        }
+
+        @include responsive(laptop){
+           display: none;
+            
+        }
+
+    }
+
+    .hero{
+       
+
+        @include responsive(laptop){
+            padding-top: 5rem;
+           
+        }
+
+        &__title{
+            font-size: 4rem;
+            margin-bottom: 2.4rem;
+            font-weight: $black;
+
+            @include responsive(laptop){
+                font-size: 6.4rem;
+                margin-bottom: 3.4rem;
+                
+            }
+        }
+
+        &__paragraph{
+            font-weight: $medium;
+            margin-bottom: 3.2rem;
+            
+           
+        }
+
+        &__box {
+            padding-bottom: 6.4rem;
+           
+            &> *{
+            display:inline-block;
+            &:first-child{
+                margin-bottom: 1.6rem;
+
+                @include responsive(tablet){
+                    margin-right: 1.6rem;
+                }
+              }
+           }
+
+           /*Remove all the extra white space*/
+
+           @include responsive(laptop){
+           padding: 0;
+            
+           }
+           
+        }
+
+        @include responsive(tablet){
+           width: 47%;
+           margin: 0 auto;
+        }
+        @include responsive(laptop){
+            margin-bottom: 7.9rem;
+        }
+
+        
+    }
+
+
+}
+
+.center{
+    position: relative;
+    margin-top: 8rem;
+    padding: 8rem 0 11.5rem;
+
+    @include responsive(tablet){
+        padding-top: 6.4rem;
+    }
+
+    @include responsive(laptop){
+        padding-top:1rem;
+        
+    }
+
+  
+   
+  
+   &__img{
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+       gap: 2.4rem;
+       margin-bottom: 6.4rem;
+
+       /*Tablet*/
+       @include responsive(tablet){
+         gap: 1rem;
+         margin-top: 4.8rem;
+       }
+
+       /*Laptop */
+
+       @include responsive(laptop){
+        gap: 3rem;
+        margin-bottom: 8rem;
+        
+      }
+
+
+
+       &>*{
+           width: 15rem;
+           height: auto;
+           border-radius: .8rem;
+           @include responsive(laptop){
+            gap: 1.1rem;
+            width: 1.64rem;
+            
+        }
+
+           @include responsive(laptop){
+            width: 25.5rem;
+            
+        }
+       }
+   }
+
+   &__box{
+    @include responsive(tablet){
+        width: 57%;
+    }
+   }
+
+   &__title{
+       &--sm{
+           color: var(--color-primary);
+           margin-bottom: 2.4rem;
+           letter-spacing: .4rem;
+           text-transform: uppercase;
+           font-size: 1.6rem;
+
+           @include responsive(laptop){
+            margin-bottom: 1.6rem;
+            }
+
+       }
+
+       &--bg{
+            margin: auto;
+           margin-bottom:3.2rem;
+           
+           @include responsive(tablet){
+            width: 90%;
+
+            @include responsive(laptop){
+                width: 40%;
+                
+                
+            }
+        }
+       }
+   }
+
+   &__paragraph{
+       width: 95%;
+       @include responsive(tablet){
+        width: 110%;
+       }
+       @include responsive(laptop){
+           width: 48%;
+           margin: 0 auto;
+       }
+   }
+
+}
+
+.footer{
+    position: relative;
+    padding:6.4rem 2.4rem 7.2rem;
+    margin-top: 5.4rem;
+    background: linear-gradient(hsla(192, 37%, 48%, .9),
+    hsla(192, 37%, 48%,.9)),
+    url('/starter-code/assets/mobile/image-footer.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: darken;
+
+    @include responsive(tablet){
+        padding-top: 9.2rem;
+        padding-bottom: 6.6rem;
+
+        /*tablet*/
+        background: linear-gradient(hsla(192, 37%, 48%, .9),
+    hsla(192, 37%, 48%,.9)),
+    url('/starter-code/assets/tablet/image-footer.jpg');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    }
+
+    /*Laptop*/
+   .flexer{
+    @include responsive(laptop){
+        display: flex;
+        justify-content: space-between;
+
+        &>*{
+            margin: 0;
+        }
+    }
+   }
+
+   @include responsive(laptop){
+    text-align: left;
+}
+
+    &__title{
+        color: var(--color-white);
+        margin-bottom: 2.4rem;
+        @include responsive(tablet){
+           width: 45%;
+           margin:0 auto;
+           margin-bottom: 3.2rem;
+        }
+
+        @include responsive(laptop){
+            flex: 0 0 30%;
+            
+        }
+    }
+    &__paragraph{
+        font-size: 1.8rem;
+        line-height: 1.4;
+        color: var(--color-white);
+        margin-bottom: 3.2rem;
+
+        @include responsive(tablet){
+            width: 75%;
+            margin: 0 auto;
+            margin-bottom: 4rem;
+           
+        }
+
+      @include responsive(laptop){
+          flex: 0 0 29%;
+          
+         
+          
+      }
+
+    }
+
+}
